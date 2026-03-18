@@ -16,7 +16,7 @@ PLATE_RE = re.compile(r'[A-Z]{3}[0-9]{3}[A-Z]')
 BUFFER_SIZE = 5 
 COOLDOWN = 10   # seconds 
  
-csv_file = "plates_log.csv" 
+csv_file = "data/plates/log.csv" 
  
 if not os.path.exists(csv_file): 
    with open(csv_file, "w", newline="") as f: 
