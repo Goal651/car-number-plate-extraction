@@ -1,10 +1,16 @@
-# 🚗 Real-time Car Number Plate Extraction
+# Real-time Car Number Plate Extraction
 
-A real-time computer vision pipeline for detecting, aligning, and extracting text from car license plates using **OpenCV** and **Tesseract OCR**.
+A real-time computer vision pipeline for detecting, aligning, and extracting text from car license plates using OpenCV and Tesseract OCR.
 
 ---
 
-## 🛠 Features
+## Result Preview
+
+![Extraction Result](data/screenshots/Screemshot_18-3-2026.png)
+
+---
+
+## Features
 
 - **Real-time Detection**: Uses edge detection and contour analysis to locate plates.
 - **Perspective Alignment**: Automatically deskews plates into a rectangular format for better OCR accuracy.
@@ -14,19 +20,19 @@ A real-time computer vision pipeline for detecting, aligning, and extracting tex
 
 ---
 
-## 🚀 Pipeline Overview
+## Pipeline Overview
 
 ### 1. Detection Stage (`src/detect.py`)
 Identifies potential plate regions in the video stream.
 - Converts frame to grayscale and applies Gaussian blur.
-- Uses **Canny Edge Detection** to find contours.
-- Filters candidates based on **Area** (>600 units) and **Aspect Ratio** (2.0 to 8.0).
+- Uses Canny Edge Detection to find contours.
+- Filters candidates based on Area (>600 units) and Aspect Ratio (2.0 to 8.0).
 
 ### 2. Alignment & OCR (`src/ocr.py`)
 Standardizes the detected plate and reads the text.
-- Applies a **Perspective Transform** to warp the plate into a fixed `450x140` rectangle.
-- Preprocesses the warped image with Grayscale and **Otsu's Thresholding**.
-- Extracts text using **Pytesseract** (configured for Page Segmentation Mode 8 - single word).
+- Applies a Perspective Transform to warp the plate into a fixed 450x140 rectangle.
+- Preprocesses the warped image with Grayscale and Otsu's Thresholding.
+- Extracts text using Pytesseract (configured for Page Segmentation Mode 8 - single word).
 
 ### 3. Validation & Temporal Logic (`src/temporal.py`)
 Ensures high confidence before logging.
@@ -36,7 +42,7 @@ Ensures high confidence before logging.
 
 ---
 
-## 📦 Installation
+## Installation
 
 1. **Install Tesseract OCR Engine**:
    - **Linux**: `sudo apt install tesseract-ocr`
@@ -50,7 +56,7 @@ Ensures high confidence before logging.
 
 ---
 
-## 🎮 Usage
+## Usage
 
 Run the temporal validation script for the full pipeline:
 ```bash
@@ -64,19 +70,9 @@ Other utility scripts:
 
 ---
 
-## 📊 Results
-
-### Detection & Alignment
-The system draws a green bounding box around the detected plate and shows a deskewed crop in a separate window.
-
-### Temporal Confirmation
-The final system overlays the **Confirmed Plate** on the video feed once it has been verified across multiple frames.
-
----
-
-## 📂 Project Structure
+## Project Structure
 
 - `src/`: Core Python source files.
 - `data/plates/`: Location of the generated `log.csv`.
-- `data/screenshots/`: Recommended location for result captures.
+- `data/screenshots/`: Storage for project result captures.
 - `requirements.txt`: Python dependencies.
